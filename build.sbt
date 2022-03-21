@@ -2,8 +2,8 @@ import Dependencies._
 
 ThisBuild / scalaVersion := "2.13.8"
 ThisBuild / version := "0.1.0-SNAPSHOT"
-ThisBuild / organization := "com.example"
-ThisBuild / organizationName := "example"
+ThisBuild / organization := "com.stocknews"
+ThisBuild / organizationName := "stocknews"
 
 val Cctt: String = "compile->compile;test->test"
 
@@ -51,10 +51,12 @@ lazy val `delivery-http4s` = project
 lazy val persistence = project
   .in(file("persistence"))
   .dependsOn(domain % Cctt)
+  .dependsOn(core % Cctt)
   .settings(commonSettings)
   .settings(
     libraryDependencies ++= Seq(
-      org.typelevel.`cats-core`
+      org.typelevel.`cats-effect`,
+      org.tpolecat.`skunk-core`,
     )
   )
 
