@@ -18,9 +18,9 @@ trait Boundary[F[_], ArticleId] {
       articles: Vector[Article.Existing[ArticleId]]
     ): F[Vector[Article.Existing[ArticleId]]]
 
-  def deleteOne(article: Article.Existing[ArticleId]): F[Unit]
-  def deleteMany(Articles: Vector[Article.Existing[ArticleId]]): F[Unit]
-  def deleteAll: F[Unit]
+  // def deleteOne(article: Article.Existing[ArticleId]): F[Unit]
+  // def deleteMany(Articles: Vector[Article.Existing[ArticleId]]): F[Unit]
+  // def deleteAll: F[Unit]
 }
 
 object Boundary {
@@ -58,13 +58,13 @@ object Boundary {
         ): F[Vector[Article.Existing[ArticleId]]] =
         writeMany(articles)
 
-      override def deleteOne(article: Article.Existing[ArticleId]): F[Unit] =
-        deleteMany(Vector(article))
+      // override def deleteOne(article: Article.Existing[ArticleId]): F[Unit] =
+      //   deleteMany(Vector(article))
 
-      override def deleteMany(articles: Vector[Article.Existing[ArticleId]]): F[Unit] =
-        gateway.deleteMany(articles)
+      // override def deleteMany(articles: Vector[Article.Existing[ArticleId]]): F[Unit] =
+      //   gateway.deleteMany(articles)
 
-      override val deleteAll: F[Unit] =
-        gateway.deleteAll
+      // override val deleteAll: F[Unit] =
+      //   gateway.deleteAll
     }
 }

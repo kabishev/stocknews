@@ -42,8 +42,8 @@ object PostgresEntityGateway {
             .map(_.to(Vector))
         }
 
-      override def deleteMany(articles: Vector[Article.Existing[UUID]]): F[Unit] = ???
-      override def deleteAll: F[Unit] = ???
+      // override def deleteMany(articles: Vector[Article.Existing[UUID]]): F[Unit] = ???
+      // override def deleteAll: F[Unit] = ???
     }
   }
 

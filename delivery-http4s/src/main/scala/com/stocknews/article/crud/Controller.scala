@@ -33,14 +33,14 @@ object Controller {
             case r @ POST -> Root =>
               r.as[Request.Article.Create].flatMap(create)
 
-            case r @ PUT -> Root / id =>
-              r.as[Request.Article.Update].flatMap(update(id))
+            // case r @ PUT -> Root / id =>
+            //   r.as[Request.Article.Update].flatMap(update(id))
 
             case GET -> Root => showAll
             case GET -> Root / id => searchById(id)
 
-            case DELETE -> Root => deleteAll
-            case DELETE -> Root / id => delete(id)
+            // case DELETE -> Root => deleteAll
+            // case DELETE -> Root / id => delete(id)
           }
         }
 
@@ -177,15 +177,15 @@ object Controller {
             }
           }
 
-        private def deleteAll: F[Response[F]] =
-          boundary.deleteAll >> NoContent()
+        // private def deleteAll: F[Response[F]] =
+        //   boundary.deleteAll >> NoContent()
 
-        private def delete(id: String): F[Response[F]] =
-          withIdPrompt(id) { id =>
-            withReadOne(id) { article =>
-              boundary.deleteOne(article) >> NoContent()
-            }
-          }
+        // private def delete(id: String): F[Response[F]] =
+        //   withIdPrompt(id) { id =>
+        //     withReadOne(id) { article =>
+        //       boundary.deleteOne(article) >> NoContent()
+        //     }
+        //   }
       }
     }
 }
