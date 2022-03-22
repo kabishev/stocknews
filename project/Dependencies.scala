@@ -6,6 +6,11 @@ object Dependencies {
       val `context-applied` = "org.augustjune" %% "context-applied" % "0.1.4"
     }
 
+    case object slf4j {
+      val `slf4j-simple` =
+        "org.slf4j" % "slf4j-simple" % "1.7.36"
+    }
+
     case object http4s {
       val http4sVersion = "0.21.31"
       val `http4s-blaze-server` = "org.http4s" %% "http4s-blaze-server" % http4sVersion

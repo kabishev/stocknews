@@ -8,7 +8,7 @@ ThisBuild / organizationName := "stocknews"
 val Cctt: String = "compile->compile;test->test"
 
 lazy val stocknews =
-  project in file(".") aggregate (util, domain, core, `delivery-http4s`, persistence)
+  project in file(".") aggregate (util, domain, core, `delivery-http4s`, persistence, main)
 
 lazy val util = project
   .in(file("util"))
@@ -57,6 +57,20 @@ lazy val persistence = project
     libraryDependencies ++= Seq(
       org.typelevel.`cats-effect`,
       org.tpolecat.`skunk-core`,
+    )
+  )
+
+lazy val main = project
+  .in(file("main"))
+  .dependsOn(domain % Cctt)
+  .dependsOn(`delivery-http4s` % Cctt)
+  .dependsOn(persistence % Cctt)
+  .settings(commonSettings)
+  .settings(
+    libraryDependencies ++= Seq(
+      org.typelevel.`cats-core`,
+      org.typelevel.`cats-effect`,
+      org.slf4j.`slf4j-simple`
     )
   )
 
