@@ -25,7 +25,7 @@ object Statement {
 
   object select {
     val all: Query[Void, Article.Existing[UUID]] =
-      sql"SELECT title, text, date FROM article".query(Article.Existing.codec)
+      sql"SELECT * FROM article".query(Article.Existing.codec)
 
     def byIds(size: Int): Query[List[UUID], Article.Existing[UUID]] =
       sql"""
