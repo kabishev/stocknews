@@ -1,4 +1,5 @@
 import Dependencies._
+import sbtassembly.AssemblyPlugin.autoImport._
 
 ThisBuild / scalaVersion := "2.13.8"
 ThisBuild / version := "0.1.0-SNAPSHOT"
@@ -8,7 +9,13 @@ ThisBuild / organizationName := "stocknews"
 val Cctt: String = "compile->compile;test->test"
 
 lazy val stocknews =
-  project in file(".") aggregate (util, domain, core, `delivery-http4s`, persistence, main)
+  project
+    .in(file("."))
+    .settings(
+      assembly / assemblyJarName := "stocknews.jar",
+      assembly / mainClass := Some("com.stocknews.article.Main")
+    )
+    .dependsOn(util, domain, core, `delivery-http4s`, persistence, main)
 
 lazy val util = project
   .in(file("util"))
