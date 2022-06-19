@@ -16,6 +16,6 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - ./seed.sql:/docker-entrypoint-initdb.d/init.sql
+      - ../persistence/sql/seed.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - backend
