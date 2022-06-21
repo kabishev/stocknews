@@ -20,6 +20,7 @@ lazy val stocknews =
       assembly / mainClass := Some("com.stocknews.article.Main")
     )
     .dependsOn(util, domain, core, `delivery-http4s`, persistence, main)
+    .aggregate(util, domain, core, `delivery-http4s`, persistence, main)
 
 lazy val util = project
   .in(file("util"))
