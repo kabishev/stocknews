@@ -47,7 +47,7 @@ object Boundary {
       override def readManyById(ids: Vector[ArticleId]): F[Vector[Article.Existing[ArticleId]]] =
         gateway.readManyById(ids)
 
-      override val readAll: F[Vector[Article.Existing[ArticleId]]] =
+      override def readAll: F[Vector[Article.Existing[ArticleId]]] =
         gateway.readAll
 
       override def updateOne(article: Article.Existing[ArticleId]): F[Article.Existing[ArticleId]] =

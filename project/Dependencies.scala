@@ -6,6 +6,16 @@ object Dependencies {
       val `context-applied` = "org.augustjune" %% "context-applied" % "0.1.4"
     }
 
+    case object scalacheck {
+      val scalacheck =
+        "org.scalacheck" %% "scalacheck" % "1.15.4" % "test"
+    }
+
+    case object scalatest {
+      val scalatest =
+        "org.scalatest" %% "scalatest" % "3.2.12" % "test"
+    }
+
     case object slf4j {
       val `slf4j-simple` =
         "org.slf4j" % "slf4j-simple" % "1.7.36"
@@ -16,10 +26,6 @@ object Dependencies {
       val `http4s-blaze-server` = "org.http4s" %% "http4s-blaze-server" % http4sVersion
       val `http4s-circe` = "org.http4s" %% "http4s-circe" % http4sVersion
       val `http4s-dsl` = "org.http4s" %% "http4s-dsl" % http4sVersion
-    }
-
-    case object scalatest {
-      lazy val scalaTest = "org.scalatest" %% "scalatest" % "3.2.9"
     }
 
     case object tpolecat {

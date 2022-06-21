@@ -6,6 +6,10 @@ ThisBuild / version := "0.1.0-SNAPSHOT"
 ThisBuild / organization := "com.stocknews"
 ThisBuild / organizationName := "stocknews"
 
+// Test / parallelExecution := false
+Test / testOptions += Tests.Argument(TestFrameworks.ScalaTest, "-oSD")
+Test / logBuffered := false
+
 val Cctt: String = "compile->compile;test->test"
 
 lazy val stocknews =
@@ -36,7 +40,9 @@ lazy val core = project
   .settings(commonSettings)
   .settings(
     libraryDependencies ++= Seq(
-      org.typelevel.`cats-core`
+      org.typelevel.`cats-core`,
+      org.scalacheck.scalacheck,
+      org.scalatest.scalatest
     )
   )
 
@@ -90,4 +96,3 @@ lazy val commonSettings = Seq(
   Test / console / scalacOptions :=
     (Compile / console / scalacOptions).value,
 )
-// See https://www.scala-sbt.org/1.x/docs/Using-Sonatype.html for instructions on how to publish to Sonatype.
