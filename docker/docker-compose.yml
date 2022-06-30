@@ -19,3 +19,22 @@ services:
       - ../persistence/sql/seed.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - backend
+
+  stocknews:
+    restart: always
+    environment:
+      # Prevent Java from bloating
+      JAVA_OPTS: "-Xmx512m"
+    image: stocknews
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+    volumes:
+      # Provide your configuration file
+      - ./app.conf:/app.conf
+
+    # This is deprectated, but for some reason I can't resolve
+    # the service without it
+    links: 
+      - db:db

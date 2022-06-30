@@ -82,6 +82,7 @@ lazy val main = project
   .settings(commonSettings)
   .settings(
     libraryDependencies ++= Seq(
+      com.github.pureconfig,
       org.typelevel.`cats-core`,
       org.typelevel.`cats-effect`,
       org.slf4j.`slf4j-simple`
@@ -89,6 +90,7 @@ lazy val main = project
   )
 
 lazy val commonSettings = Seq(
+  addCompilerPlugin(org.typelevel.`kind-projector`),
   // addCompilerPlugin(org.augustjune.`context-applied`),
   Compile / console / scalacOptions --= Seq(
     "-Wunused:_",

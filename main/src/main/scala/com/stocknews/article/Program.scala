@@ -9,17 +9,22 @@ import cats.effect._
 import cats.syntax.all._
 
 object Program {
-  def dsl[F[_]: ConcurrentEffect: ContextShift: Timer: natchez.Trace](
+  def dsl[F[_]: ConcurrentEffect: ContextShift: Timer: natchez.Trace: ApplicationConfig](
       executionContext: ExecutionContext
     ): F[Unit] =
-    SessionPool.dsl.use { resource =>
-      for {
-        controller <- crud.DependencyGraph.dsl(Pattern, resource)
-        server <- Server.dsl(executionContext) {
-          HttpApp.dsl(controller)
-        }
-        _ <- server.serve
-      } yield ()
+    ApplicationConfig[F].config.flatMap { config =>
+      SessionPool.dsl(config.db).use { resource =>
+        for {
+          _ <- ConcurrentEffect[F].delay {
+            println(Console.GREEN + config + Console.RESET)
+          }
+          controller <- crud.DependencyGraph.dsl(Pattern, resource)
+          server <- Server.dsl(config.api, executionContext) {
+            HttpApp.dsl(controller)
+          }
+          _ <- server.serve
+        } yield ()
+      }
     }
 
   private val Pattern =

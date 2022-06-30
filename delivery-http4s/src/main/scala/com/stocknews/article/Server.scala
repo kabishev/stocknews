@@ -16,6 +16,7 @@ trait Server[F[_]] {
 
 object Server {
   def dsl[F[_]: effect.ConcurrentEffect: effect.Timer](
+      config: ApiConfig,
       executionContext: ExecutionContext
     )(
       httpApp: HttpApp[F]
@@ -24,7 +25,7 @@ object Server {
       new Server[F] {
         override val serve: F[Unit] =
           BlazeServerBuilder(executionContext)
-            .bindHttp()
+            .bindHttp(config.port, config.host)
             .withHttpApp(httpApp)
             .serve
             .compile

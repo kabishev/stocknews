@@ -1,6 +1,12 @@
 import sbt._
 
 object Dependencies {
+  case object com {
+    case object github {
+      val pureconfig = "com.github.pureconfig" %% "pureconfig" % "0.17.1"
+    }
+  }
+
   case object org {
     case object augustjune {
       val `context-applied` = "org.augustjune" %% "context-applied" % "0.1.4"
@@ -37,6 +43,7 @@ object Dependencies {
       lazy val `cats-core` = "org.typelevel" %% "cats-core" % "2.6.1"
       lazy val `cats-effect` =
         "org.typelevel" %% "cats-effect" % "2.5.4" withSources () withJavadoc ()
+      lazy val `kind-projector` = "org.typelevel" % "kind-projector" % "0.13.2" cross CrossVersion.full
     }
   }
 
