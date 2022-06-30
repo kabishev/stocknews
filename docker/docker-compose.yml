@@ -33,8 +33,5 @@ services:
     volumes:
       # Provide your configuration file
       - ./app.conf:/app.conf
-
-    # This is deprectated, but for some reason I can't resolve
-    # the service without it
-    links: 
-      - db:db
+    networks:
+      - backend
