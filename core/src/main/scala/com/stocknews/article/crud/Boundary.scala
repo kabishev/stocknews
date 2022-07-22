@@ -17,7 +17,6 @@ trait Boundary[F[_], ArticleId] {
   def updateMany(
       articles: Vector[Article.Existing[ArticleId]]
     ): F[Vector[Article.Existing[ArticleId]]]
-
   // def deleteOne(article: Article.Existing[ArticleId]): F[Unit]
   // def deleteMany(Articles: Vector[Article.Existing[ArticleId]]): F[Unit]
   // def deleteAll: F[Unit]
@@ -57,7 +56,6 @@ object Boundary {
           articles: Vector[Article.Existing[ArticleId]]
         ): F[Vector[Article.Existing[ArticleId]]] =
         writeMany(articles)
-
       // override def deleteOne(article: Article.Existing[ArticleId]): F[Unit] =
       //   deleteMany(Vector(article))
 

@@ -4,7 +4,6 @@ import java.time.LocalDateTime
 
 sealed abstract class Article[+ArticleId] extends Product with Serializable {
   // protected type ThisType <: Article[ArticleId]
-
   def title: String
   def text: String
   def date: LocalDateTime

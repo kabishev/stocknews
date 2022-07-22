@@ -21,8 +21,7 @@ object ApplicationConfig {
   def apply[F[_]](implicit F: ApplicationConfig[F]): F.type = F
 }
 
-case class LiveApplicationConfigInterpreter[F[_]: MonadError[*[_], Throwable]]()
-    extends ApplicationConfig[F] {
+case class LiveApplicationConfigInterpreter[F[_]: MonadError[*[_], Throwable]]() extends ApplicationConfig[F] {
   override val config: F[Config] = {
 
     /** We can wrap it in an either, if we do that then we don't

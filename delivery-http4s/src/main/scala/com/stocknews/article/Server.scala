@@ -17,7 +17,7 @@ trait Server[F[_]] {
 object Server {
   def dsl[F[_]: effect.ConcurrentEffect: effect.Timer](
       config: ApiConfig,
-      executionContext: ExecutionContext
+      executionContext: ExecutionContext,
     )(
       httpApp: HttpApp[F]
     ): F[Server[F]] =

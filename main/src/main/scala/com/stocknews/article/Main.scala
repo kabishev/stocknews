@@ -13,7 +13,7 @@ object Main extends App {
   implicit val timer: Timer[IO] = IO.timer(executionContext)
   implicit val configService: ApplicationConfig[IO] = LiveApplicationConfigInterpreter[IO]
 
-    Program
-      .dsl[cats.effect.IO](executionContext)
-      .unsafeRunSync()
+  Program
+    .dsl[cats.effect.IO](executionContext)
+    .unsafeRunSync()
 }

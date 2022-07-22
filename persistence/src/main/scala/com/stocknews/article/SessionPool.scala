@@ -15,6 +15,6 @@ object SessionPool {
       password = config.password.some,
       database = config.name,
       max = 10,
-      debug = false
+      debug = false,
     )
 }
